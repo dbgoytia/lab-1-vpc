@@ -158,6 +158,7 @@ resource "aws_instance" "wordpress-server" {
   vpc_security_group_ids      = [aws_security_group.webserver_sg.id]
   subnet_id                   = module.vpc-myvpc.public_subnets_ids[1]
   user_data                   = <<EOF
+    #!/bin/bash
     sudo yum install httpd php php-mysql -y
     cd /var/www/html
     wget https://wordpress.org/wordpress-5.1.1.tar.gz
